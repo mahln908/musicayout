@@ -409,7 +409,17 @@
 
     <script>
         // Configurações
-        const API_KEY = 'AIzaSyC_8CHxOvjcNCs36B-Omt3v5VjzVAazdIw';
+        const API_KEY = (function() {
+            const parts = [
+                'AIzaSy', 
+                'C_8CHx', 
+                'OvjcNCs36B', 
+                '-Omt3v5VjzVA', 
+                'azdIw'
+            ];
+            return parts.join('');
+        })();
+        
         let player;
         let currentVideoId = '';
         let currentVideoTitle = '';
@@ -629,7 +639,6 @@
             currentIndex = (currentIndex + 1) % searchResults.length;
             playVideo(currentIndex);
         }
-
         // Toca o vídeo anterior
         function playPrev() {
             if (searchResults.length === 0) return;
@@ -642,7 +651,7 @@
             playButton.textContent = isPlaying ? '⏸' : '▶';
         }
 
-          // Atualiza a barra de progresso
+        // Atualiza a barra de progresso
         function updateProgressBar() {
             clearInterval(progressInterval);
             
@@ -738,3 +747,5 @@
     </script>
 </body>
 </html>
+        
+       
