@@ -1,3 +1,5 @@
+// app.js - House MP3 Player (COMPLETO E FUNCIONAL)
+
 // Configuração protegida da API Key
 const API_KEY = (() => {
     const part1 = "AIzaSy";
@@ -72,7 +74,47 @@ function onPlayerStateChange(event) {
     }
 }
 
-// Funções de busca
+// Funções de busca (COM CORREÇÃO PARA ABRIR O PLAYER)
+function displayResults(videos) {
+    elements.results.innerHTML = '';
+    
+    if (videos.length === 0) {
+        elements.results.innerHTML = '<div class="result-item" style="justify-content:center">Nenhum resultado encontrado</div>';
+        return;
+    }
+    
+    videos.forEach((video, index) => {
+        const resultItem = document.createElement('div');
+        resultItem.className = 'result-item';
+        
+        const thumbnailUrl = video.snippet.thumbnails?.medium?.url || '';
+        
+        resultItem.innerHTML = `
+            <div class="result-thumbnail" style="background-image:url('${thumbnailUrl}')"></div>
+            <div class="result-info">
+                <h3>${video.snippet.title}</h3>
+                <p>${video.snippet.channelTitle}</p>
+            </div>
+        `;
+        
+        // CORREÇÃO: Evento de clique que ABRE O PLAYER
+        resultItem.addEventListener('click', () => {
+            // 1. Esconde a lista de resultados
+            elements.mainContainer.style.display = 'none';
+            // 2. Mostra o player completo
+            elements.playerPage.style.display = 'block';
+            // 3. Mantém o player inferior visível
+            elements.spotifyPlayer.style.display = 'flex';
+            // 4. Esconde o cabeçalho principal
+            elements.mainHeader.style.display = 'none';
+            // 5. Toca a música selecionada
+            playVideo(index);
+        });
+        
+        elements.results.appendChild(resultItem);
+    });
+}
+
 async function searchVideos() {
     const query = elements.searchInput.value.trim();
     if (!query) return;
@@ -86,33 +128,6 @@ async function searchVideos() {
         console.error('Erro na busca:', error);
         elements.results.innerHTML = '<div class="result-item" style="justify-content:center;color:red">Erro ao buscar vídeos. Tente novamente.</div>';
     }
-}
-
-function displayResults(videos) {
-    elements.results.innerHTML = '';
-    
-    if (videos.length === 0) {
-        elements.results.innerHTML = '<div class="result-item" style="justify-content:center">Nenhum resultado encontrado</div>';
-        return;
-    }
-    
-    videos.forEach((video, index) => {
-        const resultItem = document.createElement('div');
-        resultItem.className = 'result-item';
-        resultItem.onclick = () => playVideo(index);
-        
-        const thumbnailUrl = video.snippet.thumbnails?.medium?.url || '';
-        
-        resultItem.innerHTML = `
-            <div class="result-thumbnail" style="background-image:url('${thumbnailUrl}')"></div>
-            <div class="result-info">
-                <h3>${video.snippet.title}</h3>
-                <p>${video.snippet.channelTitle}</p>
-            </div>
-        `;
-        
-        elements.results.appendChild(resultItem);
-    });
 }
 
 // Controles de reprodução
@@ -255,7 +270,7 @@ function updateUpNextList() {
         
         const resultItem = document.createElement('div');
         resultItem.className = 'result-item';
-        resultItem.onclick = () => playVideo(nextIndex);
+        resultItem.addEventListener('click', () => playVideo(nextIndex));
         
         const thumbnailUrl = video.snippet.thumbnails?.medium?.url || '';
         
