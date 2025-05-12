@@ -31,7 +31,6 @@ const elements = {
     mainContainer: document.getElementById('main-container'),
     playerPage: document.getElementById('player-page'),
     backButton: document.getElementById('back-button'),
-    mobileBackButton: document.getElementById('mobile-back-button'),
     spotifyPlayer: document.getElementById('spotify-player'),
     playButton: document.getElementById('play-button'),
     prevButton: document.getElementById('prev-button'),
@@ -210,13 +209,13 @@ function updateMediaSession() {
         });
         
         navigator.mediaSession.setActionHandler('play', () => {
-            player.playVideo();
+            if (player) player.playVideo();
             isPlaying = true;
             updatePlayButton();
         });
         
         navigator.mediaSession.setActionHandler('pause', () => {
-            player.pauseVideo();
+            if (player) player.pauseVideo();
             isPlaying = false;
             updatePlayButton();
         });
@@ -364,7 +363,6 @@ function setupEventListeners() {
     
     elements.favoriteBtn.addEventListener('click', toggleFavorite);
     elements.backButton.addEventListener('click', goBack);
-    elements.mobileBackButton.addEventListener('click', goBack);
     
     elements.spotifyPlayer.addEventListener('click', function(e) {
         if (!e.target.closest('.control-buttons') && !e.target.closest('.favorite-btn') && currentVideoId) {
@@ -426,9 +424,12 @@ window.onYouTubeIframeAPIReady = function() {
 // Registrar Service Worker
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
-            .then(registration => console.log('SW registrado com sucesso'))
-            .catch(err => console.log('Falha no registro do SW:', err));
+        navigator.serviceWorker.register('sw.js').then(registration => {
+            console.log('ServiceWorker registrado com sucesso');
+            registration.update();
+        }).catch(err => {
+            console.log('Falha no registro do ServiceWorker:', err);
+        });
     });
 }
 
