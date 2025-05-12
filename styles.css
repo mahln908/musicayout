@@ -1,4 +1,306 @@
-/* [Todos os estilos anteriores] */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: white;
+    line-height: 1.4;
+}
+
+header {
+    background-color: #000;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-title {
+    font-size: 18px;
+}
+
+.mobile-back-button {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.container {
+    max-width: 100%;
+    padding: 15px;
+    margin-bottom: 80px;
+}
+
+.search-box {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 12px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 20px 0 0 20px;
+    background-color: #2d2d2d;
+    color: white;
+}
+
+.search-box button {
+    padding: 0 20px;
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    background-color: #181818;
+    border-radius: 6px;
+    padding: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.result-item:hover {
+    background-color: #282828;
+}
+
+.result-thumbnail {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    margin-right: 15px;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.result-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.result-info h3 {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+}
+
+.result-info p {
+    font-size: 12px;
+    color: #b3b3b3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player-page {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    z-index: 1000;
+    padding-top: 60px;
+    overflow-y: auto;
+    padding-bottom: 150px;
+}
+
+.player-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    padding: 15px;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.player-title {
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.youtube-container {
+    width: 100%;
+    margin: 0 auto;
+    aspect-ratio: 16/9;
+    margin-bottom: 30px;
+}
+
+.up-next {
+    padding: 0 15px;
+}
+
+.up-next h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.spotify-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background-color: #181818;
+    border-top: 1px solid #282828;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    z-index: 100;
+    gap: 15px;
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    flex: 1;
+}
+
+.player-thumbnail {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    background-size: cover;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.player-text {
+    overflow: hidden;
+    min-width: 0;
+}
+
+.player-text h4 {
+    margin: 0;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player-text p {
+    margin: 0;
+    color: #b3b3b3;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player-controls {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+}
+
+.control-buttons {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.control-buttons button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    margin: 0 10px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#play-button {
+    background-color: #1DB954;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+.progress-container {
+    width: 100%;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 3px;
+    background-color: #535353;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.progress {
+    height: 100%;
+    background-color: #1DB954;
+    border-radius: 2px;
+    width: 0%;
+}
+
+.time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #b3b3b3;
+    margin-top: 3px;
+}
+
+.favorite-btn {
+    color: #b3b3b3;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+    flex-shrink: 0;
+}
+
+.favorite-btn.active {
+    color: #1DB954;
+}
 
 .notification {
     position: fixed;
@@ -50,4 +352,31 @@
     to { opacity: 0; visibility: hidden; }
 }
 
-/* [Restante dos estilos] */
+@media (max-width: 768px) {
+    .mobile-back-button {
+        display: none;
+    }
+    
+    .header-title {
+        font-size: 16px;
+    }
+    
+    .result-item {
+        padding: 8px;
+    }
+    
+    .result-thumbnail {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
+    
+    .spotify-player {
+        height: 70px;
+    }
+    
+    .player-thumbnail {
+        width: 40px;
+        height: 40px;
+    }
+    }
