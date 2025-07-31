@@ -1,99 +1,391 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>289win - Cassino Online</title>
+    <title>Macedo TEC - Assistência Técnica Profissional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --text: #34495e;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
+            color: var(--text);
+            background-color: #f9f9f9;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        
         header {
-            background-color: #0066cc;
-            padding: 20px 0;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 30px 0;
             text-align: center;
-            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        .logo {
-            font-size: 36px;
-            font-weight: bold;
-            margin-bottom: 10px;
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
         }
-        .logo span:nth-child(1) {
-            color: white;
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            color: var(--secondary);
         }
-        .logo span:nth-child(2) {
-            color: #0066cc;
-            background-color: white;
-            padding: 0 5px;
-            border-radius: 3px;
+        
+        .logo-text {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
-        .content {
-            background-color: white;
-            padding: 30px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-top: 20px;
-            text-align: center;
-        }
-        .cta-button {
-            display: inline-block;
-            background-color: #ff6600;
-            color: white;
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 20px 0;
-            transition: background-color 0.3s;
-        }
-        .cta-button:hover {
-            background-color: #e65c00;
-        }
-        .bonus-badge {
-            background-color: #0066cc;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            display: inline-block;
+        
+        .tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
             margin-top: 10px;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 40px auto;
+            overflow: hidden;
+        }
+        
+        .service-description {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-description:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-title {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .service-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--secondary);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-top: 50px;
+        }
+        
+        .form-title {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .form-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input, 
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+        
+        .form-group input:focus, 
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--success);
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo i {
+            font-size: 1.8rem;
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .footer-logo span {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .copyright {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form {
+                padding: 25px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <div class="logo"><span>289</span><span>win</span></div>
-            <div>Seu cassino online de confiança</div>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="logo-text">MACEDO TEC</div>
+            </div>
+            <p class="tagline">Soluções técnicas com excelência e garantia</p>
         </div>
     </header>
-    
+
     <div class="container">
-        <div class="content">
-            <h1>Bem-vindo à 289win</h1>
-            <p>A 289win oferece a melhor experiência em jogos de cassino online, com centenas de opções para todos os gostos.</p>
+        <section class="service-description">
+            <h2 class="service-title">Nossos Serviços Especializados</h2>
+            <p>Na Macedo TEC, oferecemos soluções técnicas profissionais para seus eletrodomésticos e eletrônicos. Nossa equipe altamente qualificada está pronta para diagnosticar e resolver seus problemas com agilidade e competência.</p>
             
-            <p>Jogue os melhores caça-níqueis, roleta, blackjack, pôquer e muito mais, tudo com gráficos incríveis e chances reais de ganhar!</p>
-            
-            <p>Nossa plataforma é segura, rápida e fácil de usar, com suporte 24 horas por dia para te ajudar quando precisar.</p>
-            
-            <a href="https://289win0.com/?id=234650312" class="cta-button">JOGUE AGORA</a>
-            
-            <div class="bonus-badge">BÔNUS DE DEPÓSITO EXCLUSIVO PARA NOVOS USUÁRIOS!</div>
-            
-            <p>Cadastre-se agora e receba um bônus especial no seu primeiro depósito para começar a jogar com vantagem! <a href="https://289win0.com/?id=234650312" style="color: #0066cc; font-weight: bold;">Clique aqui</a></p>
-        </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-microchip"></i>
+                    <h3>Conserto de Microondas</h3>
+                    <p>Reparo de placa eletrônica, troca de capacitor, conserto da parte mecânica e elétrica.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-tv"></i>
+                    <h3>Reparo de Televisões</h3>
+                    <p>Conserto de TVs LED, LCD, Plasma e Smart TVs de todas as marcas e modelos.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-washing-machine"></i>
+                    <h3>Manutenção de Máquinas de Lavar</h3>
+                    <p>Reparo de motores, vazamentos, problemas elétricos e troca de peças.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-form">
+            <h2 class="form-title">Solicitar Assistência Técnica</h2>
+            <form id="assistanceForm">
+                <div class="form-group">
+                    <label for="name">Seu Nome:</label>
+                    <input type="text" id="name" name="name" placeholder="Digite seu nome completo" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="device">Qual aparelho precisa de assistência?</label>
+                    <select id="device" name="device" required>
+                        <option value="">Selecione o equipamento...</option>
+                        <option value="Microondas">Microondas</option>
+                        <option value="TV">Televisão (TV)</option>
+                        <option value="Máquina de lavar">Máquina de lavar</option>
+                        <option value="Outro">Outro equipamento</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="problem">Descreva detalhadamente o problema:</label>
+                    <textarea id="problem" name="problem" placeholder="Ex: Minha TV liga mas não mostra imagem, apenas som..." required></textarea>
+                </div>
+                
+                <button type="button" id="whatsappBtn" class="whatsapp-btn" disabled>
+                    <i class="fab fa-whatsapp"></i> Enviar Solicitação via WhatsApp
+                </button>
+            </form>
+        </section>
     </div>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-tools"></i>
+                <span>MACEDO TEC</span>
+            </div>
+            <p class="copyright">© 2023 Macedo TEC - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        const form = document.getElementById('assistanceForm');
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        
+        // Habilitar/desabilitar botão conforme preenchimento
+        form.addEventListener('input', () => {
+            const name = document.getElementById('name').value.trim();
+            const device = document.getElementById('device').value;
+            const problem = document.getElementById('problem').value.trim();
+            
+            whatsappBtn.disabled = !(name && device && problem);
+        });
+        
+        // Enviar para WhatsApp
+        whatsappBtn.addEventListener('click', () => {
+            const name = document.getElementById('name').value.trim();
+            const device = document.getElementById('device').value;
+            const problem = document.getElementById('problem').value.trim();
+            
+            const message = `*SOLICITAÇÃO DE ASSISTÊNCIA TÉCNICA - MACEDO TEC*\n\n` +
+                            `*Nome:* ${name}\n` +
+                            `*Equipamento:* ${device}\n` +
+                            `*Descrição do Problema:* ${problem}\n\n` +
+                            `Por favor, informe disponibilidade para atendimento.`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/5512982224674?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
 </body>
 </html>
